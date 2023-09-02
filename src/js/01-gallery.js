@@ -2,8 +2,6 @@ import { galleryItems } from './gallery-items';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// console.log(galleryItems);
-
 const container = document.querySelector('.gallery');
 
 const img = galleryItems
@@ -16,7 +14,7 @@ const img = galleryItems
             </a>
         </li>`
   )
-  .join(''); //Обьединяет все эл массива в строку.
+  .join(''); 
 
 container.insertAdjacentHTML('beforeend', img);
 
