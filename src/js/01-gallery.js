@@ -1,29 +1,27 @@
-import { galleryItems } from './gallery-items';
-// Описан в документации
+// Add imports above this line
+import { galleryItems } from './gallery-items.js';
 import SimpleLightbox from "simplelightbox";
-// Дополнительный импорт стилей
 import "simplelightbox/dist/simple-lightbox.min.css";
+// Change code below this line
 
-const container = document.querySelector('.gallery');
+console.log(galleryItems);
 
-const img = galleryItems
-  .map(
-    ({ preview, original, description }) =>
-      `<li class ="gallery__item" style="list-style: none">
-            <a class="gallery__link" href="${original}">
-                 <img class="gallery__image" src="${preview}"
-                        alt="${description}"/>
-            </a>
-        </li>`
-  )
-  .join(''); 
 
-container.insertAdjacentHTML('beforeend', img);
+const gallery = document.querySelector(".gallery")
+const cardsMarkup = createGalleryCardMarkup(galleryItems)
+gallery.insertAdjacentHTML('beforeend', cardsMarkup);
+
+function createGalleryCardMarkup(items) {
+    return items.map(({ preview, original, description }) => {
+        return `
+    <a class="gallery__item" href="${original}">
+    <img class="gallery__image" src="${preview}" alt="${description}" />
+</a>
+    `;
+    }).join("");
+}
 
 new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionPosition: 'bottom',
-  captionDelay: 250,
+    captionsData: 'alt',
+    captionDelay: 250,
 });
-
-console.log('object');
